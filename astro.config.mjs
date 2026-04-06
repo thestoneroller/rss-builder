@@ -6,6 +6,6 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  site: "https://your-astro-domain.com",
+  site: "https://rss-builder-9tz.pages.dev/",
   adapter: cloudflare(),
 });
