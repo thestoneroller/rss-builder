@@ -1,0 +1,7 @@
+name = "rss-builder"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-04-06"
+compatibility_flags = ["global_fetch_strictly_public", "nodejs_compat"]
+
+[observability]
+enabled = true
