@@ -22,7 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
-ui.html
+ui*.html
 .wrangler
 
 # pnpm-lock.yaml
