@@ -1,17 +1,178 @@
 ---
-
+const feeds = [
+  {
+    name: "Rob Palmer",
+    description: "Direct response copywriting, AI marketing frameworks, and creative strategy insights.",
+    source: "https://robpalmer.com/blog",
+    path: "/rob-palmer-rss.xml",
+  },
+  {
+    name: "Rory Sutherland",
+    description: "Latest columns and articles by Rory Sutherland (The Wiki Man) from The Spectator.",
+    source: "https://www.spectator.co.uk/writer/rory-sutherland/",
+    path: "/rory-rss.xml",
+  },
+  {
+    name: "HBR Marketing & Consumer Behavior",
+    description: "Combined feed of Harvard Business Review articles on Consumer Behavior, Behavioral Economics, Marketing, and Advertising.",
+    source: "https://hbr.org/topics",
+    path: "/hbr-marketing-rss.xml",
+  },
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RSS Builder Feeds</title>
+    <style>
+      :root {
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --card-border: #334155;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --accent: #38bdf8;
+        --accent-hover: #7dd3fc;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--bg);
+        color: var(--text-main);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem 1.5rem;
+      }
+
+      header {
+        text-align: center;
+        max-width: 640px;
+        margin-bottom: 2.5rem;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+        font-weight: 700;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.75rem;
+        background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      p.subtitle {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .feed-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+        width: 100%;
+        max-width: 680px;
+      }
+
+      .feed-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        padding: 1.5rem;
+        transition: transform 0.15s ease, border-color 0.15s ease;
+      }
+
+      .feed-card:hover {
+        transform: translateY(-2px);
+        border-color: #475569;
+      }
+
+      .feed-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      .feed-desc {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.25rem;
+      }
+
+      .feed-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 0.5rem 0.9rem;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: all 0.15s ease;
+      }
+
+      .btn-primary {
+        background-color: var(--accent);
+        color: #0f172a;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--accent-hover);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--text-muted);
+        border: 1px solid var(--card-border);
+      }
+
+      .btn-secondary:hover {
+        color: var(--text-main);
+        border-color: #64748b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>RSS Builder</h1>
+      <p class="subtitle">Custom, clean RSS feeds generated on Cloudflare Pages for sites without native feeds.</p>
+    </header>
+
+    <main class="feed-list">
+      {feeds.map((feed) => (
+        <article class="feed-card">
+          <h2 class="feed-title">{feed.name}</h2>
+          <p class="feed-desc">{feed.description}</p>
+          <div class="feed-actions">
+            <a class="btn btn-primary" href={feed.path} target="_blank" rel="noopener noreferrer">
+              📡 View RSS Feed
+            </a>
+            <a class="btn btn-secondary" href={feed.source} target="_blank" rel="noopener noreferrer">
+              🌐 Source Website
+            </a>
+          </div>
+        </article>
+      ))}
+    </main>
+  </body>
 </html>
