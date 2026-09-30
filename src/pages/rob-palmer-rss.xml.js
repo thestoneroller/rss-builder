@@ -284,7 +284,7 @@ export async function GET(context) {
 
   rssResponse.headers.set(
     "Cache-Control",
-    `public, max-age=${CACHE_MAX_AGE}, s-maxage=${CACHE_MAX_AGE}`,
+    `public, max-age=60, s-maxage=${CACHE_MAX_AGE}`,
   );
 
   return rssResponse;

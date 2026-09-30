@@ -98,7 +98,8 @@ test("GET returns valid RSS XML response with extracted items", async () => {
   try {
     const res = await GET({ site: "https://test.local" });
     assert.equal(res.status, 200);
-    assert.ok(res.headers.get("Cache-Control").includes("max-age=1800"));
+    assert.ok(res.headers.get("Cache-Control").includes("s-maxage=1800"));
+    assert.ok(res.headers.get("Cache-Control").includes("max-age=60"));
 
     const xml = await res.text();
     assert.ok(xml.includes("<rss version=\"2.0\">"), "Response should be valid RSS 2.0 XML");
