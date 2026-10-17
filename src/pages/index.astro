@@ -1,22 +1,32 @@
 ---
 const feeds = [
   {
-    name: "Rob Palmer",
-    description: "Direct response copywriting, AI marketing frameworks, and creative strategy insights.",
-    source: "https://robpalmer.com/blog",
-    path: "/rob-palmer-rss.xml",
+    name: 'Rob Palmer',
+    description:
+      'Direct response copywriting, AI marketing frameworks, and creative strategy insights.',
+    source: 'https://robpalmer.com/blog',
+    path: '/rob-palmer-rss.xml',
   },
   {
-    name: "Rory Sutherland",
-    description: "Latest columns and articles by Rory Sutherland (The Wiki Man) from The Spectator.",
-    source: "https://www.spectator.co.uk/writer/rory-sutherland/",
-    path: "/rory-rss.xml",
+    name: 'Rory Sutherland',
+    description:
+      'Latest columns and articles by Rory Sutherland (The Wiki Man) from The Spectator.',
+    source: 'https://www.spectator.co.uk/writer/rory-sutherland/',
+    path: '/rory-rss.xml',
   },
   {
-    name: "HBR Marketing & Consumer Behavior",
-    description: "Combined feed of Harvard Business Review articles on Consumer Behavior, Behavioral Economics, Marketing, and Advertising.",
-    source: "https://hbr.org/topics",
-    path: "/hbr-marketing-rss.xml",
+    name: 'HBR Marketing & Consumer Behavior',
+    description:
+      'Combined feed of Harvard Business Review articles on Consumer Behavior, Behavioral Economics, Marketing, and Advertising.',
+    source: 'https://hbr.org/topics',
+    path: '/hbr-marketing-rss.xml',
+  },
+  {
+    name: 'LinkedIn Engineering: Feed',
+    description:
+      "Engineering behind LinkedIn's Feed: ranking algorithms, machine learning, infrastructure, and experimentation.",
+    source: 'https://www.linkedin.com/blog/engineering/feed',
+    path: '/linkedin-feed-rss.xml',
   },
 ];
 ---
@@ -46,7 +56,9 @@ const feeds = [
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        font-family:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+          Cantarell, sans-serif;
         background-color: var(--bg);
         color: var(--text-main);
         min-height: 100vh;
@@ -91,7 +103,9 @@ const feeds = [
         border: 1px solid var(--card-border);
         border-radius: 12px;
         padding: 1.5rem;
-        transition: transform 0.15s ease, border-color 0.15s ease;
+        transition:
+          transform 0.15s ease,
+          border-color 0.15s ease;
       }
 
       .feed-card:hover {
@@ -155,24 +169,39 @@ const feeds = [
   <body>
     <header>
       <h1>RSS Builder</h1>
-      <p class="subtitle">Custom, clean RSS feeds generated on Cloudflare Pages for sites without native feeds.</p>
+      <p class="subtitle">
+        Custom, clean RSS feeds generated on Cloudflare Pages for sites without
+        native feeds.
+      </p>
     </header>
 
     <main class="feed-list">
-      {feeds.map((feed) => (
-        <article class="feed-card">
-          <h2 class="feed-title">{feed.name}</h2>
-          <p class="feed-desc">{feed.description}</p>
-          <div class="feed-actions">
-            <a class="btn btn-primary" href={feed.path} target="_blank" rel="noopener noreferrer">
-              📡 View RSS Feed
-            </a>
-            <a class="btn btn-secondary" href={feed.source} target="_blank" rel="noopener noreferrer">
-              🌐 Source Website
-            </a>
-          </div>
-        </article>
-      ))}
+      {
+        feeds.map((feed) => (
+          <article class="feed-card">
+            <h2 class="feed-title">{feed.name}</h2>
+            <p class="feed-desc">{feed.description}</p>
+            <div class="feed-actions">
+              <a
+                class="btn btn-primary"
+                href={feed.path}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📡 View RSS Feed
+              </a>
+              <a
+                class="btn btn-secondary"
+                href={feed.source}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🌐 Source Website
+              </a>
+            </div>
+          </article>
+        ))
+      }
     </main>
   </body>
 </html>
